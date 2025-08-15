@@ -11,7 +11,7 @@ import utilities.JsonUtils;
 
 import java.io.IOException;
 
-public class SearchForLocation extends TestCase{
+public class SearchForLocations extends TestCase{
 
     @DataProvider(name = "jsonData")
     public Object[][] getData() throws IOException {

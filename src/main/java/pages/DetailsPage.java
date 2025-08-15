@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +24,7 @@ public class DetailsPage {
     By reserveButton = By.xpath("//span[contains(text(),\"I'll\")]/ancestor::button");
     By startDatePicker = By.xpath("//button[@data-testid='date-display-field-start']/span");
 
+    @Step("Select a room and make a reservation")
     public void makeAReservation() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
         System.out.println("Making a reservation...");
@@ -44,10 +46,12 @@ public class DetailsPage {
         }
     }
 
+    @Step("Assert Check-in date")
     public Boolean checkInDate(String checkInDate)
     {
         return Objects.requireNonNull(driver.getPageSource()).contains(checkInDate);
     }
+    @Step("Assert Check-out date")
     public Boolean checkOutDate(String checkOutDate)
     {
         return Objects.requireNonNull(driver.getPageSource()).contains(checkOutDate);

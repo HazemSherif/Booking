@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -25,6 +26,7 @@ public class DashboardPage {
     private final By endDateOption = By.xpath("//span[@aria-label='Tu 14 October 2025']");
     private final By submitButton = By.xpath("//button[@type='submit']");
 
+    @Step("Type destination area")
     public void TypeDestinationArea(String destination) {
         wait.until(d -> {
             driver.findElement(destinationSearchField)
@@ -40,6 +42,7 @@ public class DashboardPage {
 
 
     }
+    @Step("Select stay dates")
     public void selectStayDates(String startDate, String endDate, String searchMonth) {
         wait.until(d -> {
             driver.findElement(startDatePicker)
@@ -68,6 +71,7 @@ public class DashboardPage {
         });
 
     }
+    @Step("Submit search")
     public void submitSearch() {
         wait.until(d -> {
             driver.findElement(submitButton)

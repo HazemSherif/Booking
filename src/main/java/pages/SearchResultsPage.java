@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +22,7 @@ public class SearchResultsPage {
     private final By seeAvailabilityButton = By.xpath("//div[contains(text(),'Tolip')]/ancestor::div[@data-testid='property-card']//a[@data-testid='availability-cta-btn']");
 
 
+    @Step("Select a hotel from the search results")
     public void SelectHotel(String hotel) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
         boolean isHotelFound = false;
