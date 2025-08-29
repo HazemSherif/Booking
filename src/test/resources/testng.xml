@@ -8,9 +8,6 @@
     <test verbose="2" preserve-order="true" name="src/test/java/testPackage/SearchForLocations">
         <classes>
             <class name="testPackage.SearchForLocations">
-                <methods>
-                    <include name="SearchForHotel"/>
-                </methods>
             </class>
         </classes>
     </test>

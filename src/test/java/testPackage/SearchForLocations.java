@@ -1,5 +1,6 @@
 package testPackage;
 
+import io.qameta.allure.Description;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -19,6 +20,7 @@ public class SearchForLocations extends TestCase{
     }
 
     @Test(dataProvider = "jsonData")
+    @Description(".")
     public void SearchForHotel(
             String destination,String hotelName, String startDate, String endDate, String startDateAbbreviation, String endDateAbbreviation, String searchMonth)
             throws InterruptedException {

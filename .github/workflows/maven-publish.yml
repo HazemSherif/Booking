@@ -1,44 +1,40 @@
-name: Selenium Maven Tests with Allure
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch:
-
+name: Run tests and publish report
+on: [push]
 jobs:
-  selenium-tests:
+  test:
     runs-on: ubuntu-latest
-
-    env:
-      BROWSER: chrome
-      BASE_URL: "https://example.com"
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v3
         with:
-          distribution: temurin
+          distribution: zulu
           java-version: 17
-          cache: maven
 
-      - name: Install Allure CLI
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y allure
+      - name: Run tests
+        run: ./gradlew clean test
 
-      - name: Run Maven tests
-        run: mvn clean test
-
-      - name: Generate Allure report
-        run: mvn allure:report
-
-      - name: Upload Allure report as artifact
-        uses: actions/upload-artifact@v4
+      - name: Load test report history
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
         with:
-          name: allure-report
-          path: target/site/allure-maven-plugin
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Build test report
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: build/allure-results
+
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
