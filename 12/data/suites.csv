@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"broken","Sat Aug 30 13:45:52 GMT 2025","Sat Aug 30 13:45:58 GMT 2025","6145","Test Suite","src/test/java/testPackage/SearchForLocations","testPackage.SearchForLocations","testPackage.SearchForLocations","SearchForHotel","SearchForHotel","."
